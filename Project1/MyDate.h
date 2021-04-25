@@ -43,7 +43,11 @@ namespace mydate {
 	std::ostream& operator << (std::ostream& os, const Date& d);	// overloads for streams
 	std::istream& operator >> (std::istream& is, Date& dd);
 
-	//Day dayofweek(const Date& d);		// Named day of date d
+	enum class Day {
+		sunday, monday, tuesday, wednesday, thursday, friday, saturday
+	};
+
+	Day dayofweek(const Date& d);		// Named day of date d
 	Date nextsunday(const Date& d);		// Next Sunday after date d
 	Date nextweekday(const Date& d);	// Date of next weekday after date d
 }

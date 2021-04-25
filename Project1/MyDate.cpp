@@ -23,8 +23,10 @@ namespace mydate
 	}
 	void Date::incday(int n)
 	{
+		// Increment day 
 		for (int i = 0; i < n; ++i)
 		{
+			d++;
 			int daysinmonth = 31;
 			switch (m)
 			{
@@ -41,16 +43,17 @@ namespace mydate
 				d = 1;
 				break;
 			};
-			d++;
 		}
 	}
 	void Date::incmonth(int n)
 	{
+		// Increment month and increase year dec>jan
 		for (int i = 0; i < n; ++i)
 		{
 			if (m == Month::dec)y++;
 			++m;
 		}
+		// Trim final date to the last day of the month
 		int daysinmonth = 31;
 		switch (m)
 		{
@@ -153,9 +156,6 @@ namespace mydate
 		dd = Date(y, Month(m), d);
 		return is;
 	}
-	enum class Day {
-		sunday,monday,tuesday,wednesday,thursday,friday,saturday
-	};
 
 	/*Day dayofweek(const Date& d)
 	{

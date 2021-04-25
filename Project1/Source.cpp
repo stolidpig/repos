@@ -1,4 +1,5 @@
 #include "MyDate.h"
+#include <Windows.h>
 #include <iostream>
 
 int main()
@@ -10,7 +11,10 @@ int main()
 	else
 		std::cout << "Not a leap year";
 	
-	birthday.incmonth(6);
-
-	std::cout << "birthday +6 months" << birthday;
+	while (true)
+	{
+		birthday.incday(1);
+		std::cout <<  birthday << "\n";
+		Sleep(50);
+	}
 }
