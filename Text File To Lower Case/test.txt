@@ -1,0 +1,7 @@
+Text File To Lower Case.exe' (Win32): Loaded 'C:\Users\Liam\source\repos\Text File To Lower Case\Debug\Text File To Lower Case.exe'. Symbols loaded.
+'Text File To Lower Case.exe' (Win32): Loaded 'C:\Windows\SysWOW64\ntdll.dll'. 
+'Text File To Lower Case.exe' (Win32): Loaded 'C:\Windows\SysWOW64\kernel32.dll'. 
+'Text File To Lower Case.exe' (Win32): Loaded 'C:\Windows\SysWOW64\KernelBase.dll'. 
+'Text File To Lower Case.exe' (Win32): Loaded 'C:\Windows\SysWOW64\apphelp.dll'. 
+'Text File To Lower Case.exe' (Win32): Loaded 'C:\Windows\SysWOW64\msvcp140d.dll'. 
+'Text File To Lower Case.exe' (Win32): Loaded 'C:\Windows\SysWOW64\vcruntime140d.dll'. 

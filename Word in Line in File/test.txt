@@ -1,0 +1,25 @@
+Though the SYNOPSIS examples don't all have names, you can and should provide a name for each test. Names are omitted above only to reduce clutter and line widths.
+
+You should follow the lead of the SYNOPSIS examples and use File::Spec. This makes it much more likely that your tests will pass on a different operating system.
+
+All of the content comparison routines provide diff diagnostic output when they report failure. Currently that diff output is always in table form and can't be changed.
+
+Most of the functions are self explanatory. One exception is compare_dirs_filter_ok which compares two directory trees, like compare_dirs_ok but with a twist. The twist is a filter which each line is fed through before comparison. I wanted this because some files are really the same, but look different textually. In particular, I was comparing files with machine generated dates. Everything in them was identical, except those dates.
+
+The filter function receives each line of each file. It may perform any necessary transformations (like excising dates), then it must return the line in (possibly) transformed state. For example, my first filter was
+
+sub chop_dates {
+    my $line = shift;
+    $line =~ s/\d{4}(.\d\d){5}//;
+    return $line;
+}
+This removes all strings like 2003.10.14.14.17.37. Everything else is unchanged and my failing tests started passing when they shold. If you want to exclude the line from consideration, return "" (do not return undef, that makes it harder to chain filters together and might lead to warnings).
+
+compare_filter_ok works in a similar manner for a single file comparison, while file_filter_ok filters the file before comparing it to your unfiltered string.
+
+The test suite has examples of the use of each function and what the output looks like on failure, though it that doesn't necessarily make them easy to read.
+
+BUGS
+compare_dirs_ok and compare_dirs_filter_ok do not test for whether the first directory has all the files that are in the second. If you care about missing files in the first direcotry, you must also call dir_contains_ok or dir_contains_only_ok. The compare_dirs_* routines do notice when the second directory does not have a files that the first one has.
+
+EXPORT

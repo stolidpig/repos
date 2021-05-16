@@ -29,6 +29,8 @@ bool loadMedia();
 // Frees media and shuts down SDL
 void close();
 
+void deallocateSurfaces();
+
 // Load an image
 SDL_Surface* loadSurface(std::string path);
 
@@ -84,7 +86,6 @@ bool initSDL()
 	}
 	return success;
 }
-
 bool loadMedia()
 {
 	//  Success flag
@@ -102,16 +103,10 @@ bool loadMedia()
 	}
 	return success;
 }
-
 void close()
 {
 	// Deallocate surfaces
-	for (int i = 0; i < KEY_PRESS_SURFACE_TOTAL; ++i)
-	{
-		SDL_FreeSurface(gKeyPressSurfaces[i]);
-		gKeyPressSurfaces[i] = NULL;
-	}
-	SDL_FreeSurface(gCurrentSurface);
+	deallocateSurfaces();
 
 	// Destroy window
 	SDL_DestroyWindow(gWindow);
@@ -119,6 +114,14 @@ void close()
 
 	// Quit SDL subsystems
 	SDL_Quit();
+}
+void deallocateSurfaces()
+{
+	for (int i = 0; i < KEY_PRESS_SURFACE_TOTAL; ++i)
+	{
+		SDL_FreeSurface(gKeyPressSurfaces[i]);
+		gKeyPressSurfaces[i] = NULL;
+	}
 }
 
 SDL_Surface* loadSurface(std::string path)
